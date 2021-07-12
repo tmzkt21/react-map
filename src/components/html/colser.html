@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script !src="">
+
+    const arr = [];
+
+    function doA() {
+
+        let i = 0;
+        for (; i < 5; i++) {
+            (function (num) {
+                arr.push({
+                    function() {
+                        console.log(num)
+                    }
+                })
+            })(i)
+            // 즉시실행 함수
+            //arr.push({function () {console.log(num)}}) 5개가있고
+            // 이 함수에 맞는애가 각각 만들어져서 10개?
+            //
+
+        }
+        //doA 안에 펀션  i 값을 물고있는애가 있는 숨겨진 참조 함수는 실행하고 사라져야하는데 i가 없어지지않음
+        //arr.push i라는 변수를 참조하고 있어서 없어지지않음 메모리를 참조  나도모르게 참조가 되고있는것 클로저 은닉 참조
+        doA();
+        console.log(arr)
+    }
+
+    for (var i = 0; i < arr.length; i++) {
+        arr[i]();
+    }
+
+</script>
+
+</body>
+</html>
