@@ -10,7 +10,7 @@ const StoreList = () => {
     // 이 가게들을 상태로 만들어야한다 바뀔거니까
 
 
-    const list = stores.map((store, idx) => <li key={idx} onClick={cartService.append(store)}>{store.name}</li>)
+    const list = stores.map((store, idx) => <li key={idx} onClick={() => cartService.append(store)}>{store.name}</li>)
     // stores li 태그에 map 을 사용하여 목록 뿌려주는과정
     //onClick={cartService.append(store) 클릭하면 카트서비스에 클릭한 store 정보를 넘겨줌
 
