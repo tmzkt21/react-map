@@ -20,7 +20,7 @@ const storeService = () => {
         // 스토어에 카테고리랑 넘어온 문자값 필터
     }
 
-    return {getStores: getStores, getByCat: getByCat}
+    return {getStores,getByCat}
 }
 export default storeService()
 // storeService() = return {getStores:getStores}

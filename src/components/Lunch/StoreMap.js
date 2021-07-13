@@ -25,25 +25,29 @@ const StoreMap = () => {
     }, [])
 
     const showMarkers = (map) => {
-        const stores = storeService.getStores()
-        const positions = stores.map( stores => ({title:stores.name, latlng:new kakao.maps.LatLng(stores.lat,stores.lng) }) )
+        const store = storeService.getStores()
+        const positions = store.map( store => ({title:store.name, latlng:new kakao.maps.LatLng(store.lat,store.lng) }) )
 
-        console.log(positions + "포지션!!")
+        console.dir(positions + "포지션!!")
         // 마커 이미지의 이미지 주소입니다
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
         for (var i = 0; i < positions.length; i ++) {
-
 
             // 마커를 생성합니다
             const marker = new kakao.maps.Marker({
                 map: map, // 마커를 표시할 지도
                 position: positions[i].latlng, // 마커를 표시할 위치
                 title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지
             });
-            marker.orgin = stores[i]
+
+            marker.orgin = store[i]
             console.log(marker + "마커!!")
             // 마커에 클릭이벤트를 등록합니다
+
             kakao.maps.event.addListener(marker, 'click', function() {
                 console.log(marker)
                 console.log(marker.orgin +"마커..")
